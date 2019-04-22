@@ -1,0 +1,12 @@
+<%= form_for @employee do |t| %>
+  <%= t.label :full_name %>
+  <%= t.text_field :full_name %>
+
+  <%= t.label :email %>
+  <%= t.text_field :email %>
+
+  <%= t.label :address %>
+  <%= t.text_field :address %>
+ 
+  <%= t.submit 'Save' %>
+<% end %>
