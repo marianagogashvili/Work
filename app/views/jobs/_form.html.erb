@@ -1,0 +1,15 @@
+<%= form_for @job do |t| %>
+  <%= t.label :title %>
+  <%= t.text_field :title %>
+
+  <%= t.label :description %>
+  <%= t.text_area :description %>
+
+  <%= t.label :contract_type %>
+  <%= t.text_field :contract_type %>
+
+  <%= t.label :vacant %>
+  <%= t.text_field :vacant %>
+ 
+  <%= t.submit 'Save' %>
+<% end %>

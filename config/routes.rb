@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get 'register', to: 'employees#new'
   resources :employees, except: [:new]
 
+  resources :jobs
 end

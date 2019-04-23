@@ -6,6 +6,7 @@ class JobsController < ApplicationController
   end
   def create
     @job = Job.new(job_params)
+    @job.created_at = Time.now
     if @job.save
       redirect_to job_path(@job)
     else
