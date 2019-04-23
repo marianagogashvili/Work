@@ -1,11 +1,11 @@
 class EmployersController < ApplicationController
   before_action :set_employer, only: [:edit, :update, :show, :destroy]
   def new
-    @employer = employer.new
+    @employer = Employer.new
   end
 
   def create
-    @employer = employer.new(employer_params)
+    @employer = Employer.new(employer_params)
     if @employer.save
       redirect_to employer_path(@employer)
     else
@@ -39,7 +39,7 @@ class EmployersController < ApplicationController
     params.require(:employer).permit(:name, :email, :location, :branch)
   end
   def set_employer
-    @employer = employer.find(params[:id])
+    @employer = Employer.find(params[:id])
   end
 
 end
