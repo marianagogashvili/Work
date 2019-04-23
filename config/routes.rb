@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  get 'register', to: 'employees#new'
+  get 'register', to: 'employees#new', as: "register"
   resources :employees, except: [:new]
 
   resources :jobs
+  resources :employers
 end
