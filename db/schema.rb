@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190424173715) do
+ActiveRecord::Schema.define(version: 20190430164354) do
 
   create_table "employees", force: :cascade do |t|
     t.string "full_name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20190424173715) do
     t.string "contract_type"
     t.boolean "vacant"
     t.datetime "created_at"
+    t.integer "employer_id"
   end
 
 end
