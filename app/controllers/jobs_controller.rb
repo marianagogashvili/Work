@@ -9,9 +9,11 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.employer = Employer.find(session[:employer_id])
     @job.created_at = Time.now
+    
     if @job.save
       redirect_to job_path(@job)
     else
+      print(@job.errors.full_messages)
       render 'new'
     end
   end

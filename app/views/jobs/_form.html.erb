@@ -9,7 +9,12 @@
   <%= t.text_field :contract_type %>
 
   <%= t.label :vacant %>
-  <%= t.text_field :vacant %>
- 
+  <% [ true, false].each do |vacant| %>
+      <br>
+      <%= t.label vacant %>
+      <%= t.radio_button :vacant, vacant %>
+    <% end %>
+
+  <% print(:vacant) %>
   <%= t.submit 'Save' %>
 <% end %>
