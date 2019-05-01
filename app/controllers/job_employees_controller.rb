@@ -1,9 +1,7 @@
 class JobEmployeesController < ApplicationController
 
   def create
-    @employee = Employee.find(session[:employee_id])
-    @job = Job.find(params[:id])
-    @job_employee = JobEmployee.new(job_id: @job.id, employee_id: @employee.id)
+    @job_employee = JobEmployee.new(job_id: params[:id], employee_id: session[:employee_id])
     if check() == false
       @job_employee.save
     end

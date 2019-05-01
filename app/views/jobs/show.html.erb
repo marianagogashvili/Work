@@ -4,4 +4,8 @@
 </br>
 <%= session[:employer_id] %>
 
-<%= button_to "apply", apply_path %>
+<% if check? == false %>
+  <%= button_to "apply", apply_path %>
+<% else %>
+  <%= button_to "apply", apply_path, :disabled => true %>
+<% end %>
