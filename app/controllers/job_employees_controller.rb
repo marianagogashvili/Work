@@ -2,13 +2,16 @@ class JobEmployeesController < ApplicationController
   before_action :require_employer, only: [:disapprove, :approve]
   def create
     @job_employee = JobEmployee.new(job_id: params[:id], employee_id: session[:employee_id])
+    @job = Job.find(params[:id])
     if check() == false
-      @job_employee.save
+      if @job.vacant = true
+        @job_employee.save
+      end
     end
   end
 
   def check
-    if JobEmployee.find_by(job_id: @job.id, employee_id: @employee.id) != nil
+    if JobEmployee.find_by(job_id: params[:id], employee_id: session[:employee_id]) != nil
       return true
     else
       return false

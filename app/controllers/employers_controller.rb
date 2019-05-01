@@ -22,7 +22,6 @@ class EmployersController < ApplicationController
         @applicantions.push(j)
       end
     end
-    print(@applicantions)
   end
 
   def edit

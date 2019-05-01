@@ -4,9 +4,10 @@
 </br>
 <%= session[:employer_id] %>
 
-<% if check? == false %>
-  <%= button_to "apply", apply_path %>
-<% else %>
-  <%= button_to "apply", apply_path, :disabled => true %>
+<% if logged_in? %>
+  <% if check? == false && @job.vacant == true %>
+    <%= button_to "apply", apply_path %>
+  <% else %>
+    <%= button_to "apply", apply_path, :disabled => true %>
+  <% end %>
 <% end %>
-
