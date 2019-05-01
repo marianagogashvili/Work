@@ -1,3 +1,7 @@
 <%= @job.title %>
 <%= @job.employer.name %>
+<%= @job.vacant %>
+</br>
 <%= session[:employer_id] %>
+
+<%= button_to "apply", apply_path %>

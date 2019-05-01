@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :jobs
   resources :employers
 
+  post 'apply/:id', to: 'job_employees#create', as: "apply"
+
 end
