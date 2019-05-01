@@ -15,7 +15,14 @@ class EmployersController < ApplicationController
   end
 
   def show
-    
+    @applicantions = []
+    for j in JobEmployee.all
+      job = Job.find(j.job_id)
+      if job.employer.id == @employer.id
+        @applicantions.push(j)
+      end
+    end
+    print(@applicantions)
   end
 
   def edit

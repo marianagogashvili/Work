@@ -1,1 +1,11 @@
-<%= link_to 'Log out', logout_path, method: :delete %>
+<% if logged_in? && session[:employer_id] == @employer.id %>
+ <%= link_to 'Log out', logout_path, method: :delete %>
+  <% @applicantions.each do |t| %>
+    <p><%= t.id %> </p>
+    <% if t.approved == false %>
+      <%= button_to "approve", approve_path(t.id) %>
+    <% else %>
+      <%= button_to "disapprove", disapprove_path(t.id) %>
+    <% end %>
+  <% end %>
+<% end %>

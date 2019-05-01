@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resources :employers
 
   post 'apply/:id', to: 'job_employees#create', as: "apply"
+  post 'approve/:id',to: 'job_employees#approve', as: "approve"
+  post 'disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
 
 end
