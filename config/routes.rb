@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post 'job/:id/save', to: 'jobs#save', as: "save"
   
   post 'apply/:id', to: 'job_employees#create', as: "apply"
-  post 'approve/:id',to: 'job_employees#approve', as: "approve"
-  post 'disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
+  post 'job/:job_id/approve/:id',to: 'job_employees#approve', as: "approve"
+  post 'job/:job_id/disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
 
 end
