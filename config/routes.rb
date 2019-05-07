@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   get 'register', to: 'employees#new', as: "register"
   resources :employees, except: [:new]
 
-  resources :jobs
+  post 'search', to: 'jobs#search', as: "search"
+  get 'jobs', to: 'jobs#index'
+  resources :jobs, except: [:index]
   resources :employers
-
+  post 'job/:id/save', to: 'jobs#save', as: "save"
+  
   post 'apply/:id', to: 'job_employees#create', as: "apply"
   post 'approve/:id',to: 'job_employees#approve', as: "approve"
   post 'disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"

@@ -7,6 +7,7 @@ class Employee < ApplicationRecord
   has_many :job_employees
   has_many :jobs, through: :job_employees
 
-
+  has_many :saved
+  has_many :jobs, through: :saved
   has_secure_password
 end

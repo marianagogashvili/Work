@@ -11,3 +11,8 @@
     <%= button_to "apply", apply_path, :disabled => true %>
   <% end %>
 <% end %>
+<% if !@valid %>
+  <%= button_to "save", save_path(@job.id) %>
+<% else %>
+  <%= button_to "save", save_path(@job.id), :disabled => true %>
+<% end %>  

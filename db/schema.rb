@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190501134637) do
+ActiveRecord::Schema.define(version: 20190507162413) do
 
   create_table "employees", force: :cascade do |t|
     t.string "full_name"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 20190501134637) do
     t.boolean "vacant"
     t.datetime "created_at"
     t.integer "employer_id"
+    t.string "location"
+  end
+
+  create_table "saveds", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "employee_id"
   end
 
 end

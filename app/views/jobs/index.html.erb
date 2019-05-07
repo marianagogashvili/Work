@@ -1,0 +1,45 @@
+ 
+<%# form_tag(posts_path, :method => "get", id: "search-form") do %>
+<%# text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+<%# submit_tag "Search" %>
+<% #end %>
+
+<% #if @posts.present? %>
+  <%# render @posts %>
+<% #else %>
+  <!-- <p>There are no posts containing the term(s) <%= params[:search] %>.</p> -->
+<% #end %>
+<%# csrf_meta_tags %>
+<!--
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var country = ["Australia", "Bangladesh", "Denmark", "Hong Kong", "Indonesia", "Netherlands", "New Zealand", "South Africa"];
+        $("#country").select2({
+          data: country
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+    <form action="/search" method="post">
+      
+    </form> 
+
+    <%= form_tag(search_path, :method => "post", id: "search-form") do %>
+         <select id="country" style="width:300px;"></select>
+      <input type="submit">
+    <% end %>
+
+    </div>
+  </body>
+</html> -->
+
+<% @jobs2.each do |t| %>
+  <%= t.title %>
+<% end %>  
