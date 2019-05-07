@@ -19,6 +19,10 @@ class EmployeesController < ApplicationController
     for job in JobEmployee.where(employee_id: @employee.id)
       @your_applications.push([Job.find(job.job_id), job.approved])
     end
+    @saved_for_later = []
+    for saved in Saved.where(employee_id: @employee.id)
+      @saved_for_later.push(Job.find(saved.job_id))
+    end
   end
 
   def edit
