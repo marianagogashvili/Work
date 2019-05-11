@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     if !logged_in?
-      redirect_to redirect_to(:back)
+      redirect_to(:back)
     end
   end
 end

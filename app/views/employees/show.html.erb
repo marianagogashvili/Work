@@ -1,7 +1,118 @@
-<% @your_applications.each do |a, v| %>
-  <p><%= a.title %> <%= v %> </p>
-<% end %>
+<style>
+  p {
+    margin: 5px;
+  }
+  .container {
+    margin: 20px;
+  }
+  .profile {
+    float: left;
+  }
+  .jobs {
+    clear: both;
+  }
 
-<% @saved_for_later.each do |a| %>
-  <p><%= a.title %></p>
-<% end %>
+  #job {
+    background-color: white;
+    margin-bottom: 10px;
+    font-size: 23px;
+    height: 40px;
+
+  }
+
+  #job1 {
+    background-color: #f2f2f2;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  #title {
+    padding: 8px;
+    display:block;
+  }
+
+  #header{
+    padding-top: 10px;
+    font-size: 27px;
+  }
+  
+  h1, p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+</style>
+<div class="container">
+  <div class="profile">
+    <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="">
+    <p><%= @employee.full_name %></p>
+    <p><%= @employee.email %></p>
+    <p><%= @employee.address %></p>
+    <p><%= @employee.full_name %></p>
+  </div>
+
+  <div class="profile">
+    <h1>Your Work Profile</h1>
+    <p><%= @employee.full_name %></p>
+  </div>
+
+  <div class="jobs">
+    <h1 id="header">Jobs you've applied for</h1>
+    <% if (@your_applications == []) %>
+      <p>It's empty</p>
+    <% else %>
+    <div class="jobs">
+    <div id="job1" style="float: left; width: 87%; "><p>title</p></div> 
+    <div id="job1" style="float: right; width: 12%; "><p>appr.</p></div> 
+      <% @your_applications.each do |a, v| %>
+          <div id="job" style="float: left; width: 87%; ">
+            <p>
+              <%= link_to a.title, job_path(a.id), id: "title" %>
+            </p>
+          </div> 
+          <div id="job" style="float: right; width: 12%; ">
+            <p> 
+              <% if (v == false)  %>
+                <p>no</p>
+              <% else %>
+                <p>yes</p>
+              <% end %>
+            </p>  
+          </div> 
+      <% end %>
+
+    </div>
+
+  </div>
+  <% end %>
+  <hr size="1" width="100%" align="left" color="#f2f2f2">
+
+  <div class="jobs">
+    <h1 id="header">Saved for later</h1>
+    <% if (@saved_for_later == []) %>
+      <p>It's empty</p>
+    <% else %>
+    <div class="jobs">
+      <div id="job1" style="float: left; width: 87%; "><p>title</p></div> 
+    <div id="job1" style="float: right; width: 12%; "><p>del.</p></div>
+      <% @saved_for_later.each do |a| %>
+        <div id="job" style="float: left; clear: both;">
+          <p>
+            <%= link_to a.title, job_path(a.id), id: "title" %>
+          </p>
+        </div>
+        <div id="job" style="float: right; width: 12%; ">
+            <p>
+              <%= link_to "del",  del_save_path(a.id), method: :delete, id: "title2" %>
+            </p>  
+          </div> 
+      <% end %>
+    </div>
+    <% end %>
+    
+  </div>
+</div>

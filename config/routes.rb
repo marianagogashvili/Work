@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'register', to: 'employees#new', as: "register"
+  get 'mypage', to: 'employees#show'
   resources :employees, except: [:new]
 
   post 'search', to: 'jobs#search', as: "search"
@@ -15,7 +16,9 @@ Rails.application.routes.draw do
   resources :jobs, except: [:index]
   resources :employers
   post 'job/:id/save', to: 'jobs#save', as: "save"
+  delete 'job/:id/del_save', to: 'jobs#del_save', as: "del_save"
   
+
   post 'apply/:id', to: 'job_employees#create', as: "apply"
   post 'job/:job_id/approve/:id',to: 'job_employees#approve', as: "approve"
   post 'job/:job_id/disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"

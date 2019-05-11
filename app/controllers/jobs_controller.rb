@@ -37,14 +37,12 @@ class JobsController < ApplicationController
     else
       redirect_to root_path
     end
+  end
 
-    # begin 
-    #   @s2 = Saved.find(job_id: @job.id, employee_id: session[:employee_id])
-    # rescue Exception => exc  
-    #   if exc 
-    #     
-    #   end
-    # end
+  def del_save
+    s = Saved.find_by(job_id: params[:id], employee_id: session[:employee_id])
+    s.destroy
+    redirect_to employee_path(session[:employee_id])
   end
 
   def new

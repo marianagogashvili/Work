@@ -22,13 +22,13 @@ class JobEmployeesController < ApplicationController
   def approve
     @url1 = 'http://localhost:3000'
     @je.update(approved: true)
-    UsermailerMailer.approved_email(@employee, @employer, @job).deliver_now
+    UsermailerMailer.approved_email(@employee, @employer, @job).deliver_later
     redirect_to employer_path(session[:employer_id])
   end
 
   def disapprove
     @je.update(approved: false)
-    UsermailerMailer.disapproved_email(@employee, @employer, @job).deliver_now
+    UsermailerMailer.disapproved_email(@employee, @employer, @job).deliver_later
     redirect_to employer_path(session[:employer_id])
   end
 

@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:edit, :update, :show, :destroy]
+  before_action :set_employee, only: [:edit, :update, :destroy]
+  before_action :require_employee, only: [:edit, :update, :destroy]
+  before_action :require_logged_in, only: [:new, :create]
   def new
     @employee = Employee.new
   end
@@ -15,6 +17,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
+    @employee = Employee.find(session[:employee_id])
     @your_applications = [] 
     for job in JobEmployee.where(employee_id: @employee.id)
       @your_applications.push([Job.find(job.job_id), job.approved])
@@ -48,6 +51,16 @@ class EmployeesController < ApplicationController
   end
   def set_employee
     @employee = Employee.find(params[:id])
+  end
+  def require_employee
+    if session[:employee_id] != @employee.id
+      redirect_to(:back)
+    end
+  end
+  def require_logged_in
+    if session[:employee_id] == nil
+      redirect_to(:back)
+    end
   end
 
 end
