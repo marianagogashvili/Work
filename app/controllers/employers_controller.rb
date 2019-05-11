@@ -15,6 +15,7 @@ class EmployersController < ApplicationController
   end
 
   def show
+    @your_jobs = []
     @applicantions = []
     for j in JobEmployee.all
       job = Job.find(j.job_id)
@@ -24,6 +25,9 @@ class EmployersController < ApplicationController
       end
     end
 
+    for job in Job.where(employer_id: @employer.id)
+      @your_jobs.push(job)
+    end
   end
 
   def edit

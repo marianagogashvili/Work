@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   get 'register', to: 'employees#new', as: "register"
-  get 'mypage', to: 'employees#show'
   resources :employees, except: [:new]
 
   post 'search', to: 'jobs#search', as: "search"

@@ -5,10 +5,10 @@ class Job < ApplicationRecord
   validates :description, presence: true
   validates :contract_type, presence: true
   
-  has_many :job_employees
+  has_many :job_employees, dependent: :destroy
   has_many :employees, through: :job_employees
   
-  has_many :saved
+  has_many :saved, dependent: :destroy
   has_many :users, through: :saved
   # def self.search(search)
   #   where("title LIKE ?", "%#{search}%")

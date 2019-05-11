@@ -1,11 +1,124 @@
-<% if logged_in? && session[:employer_id] == @employer.id %>
- <%= link_to 'Log out', logout_path, method: :delete %>
-  <% @applicantions.each do |t, v, e| %>
-    <p><%= t.title %> <%= e.email %></p>
-    <% if v == false %>
-      <%= button_to "approve", approve_path(t.id) %>
-    <% else %>
-      <%= button_to "disapprove", disapprove_path(t.id) %>
+
+
+<style>
+  p {
+    margin: 5px;
+  }
+  .container {
+    margin: 20px;
+  }
+  .profile {
+    float: left;
+  }
+  .jobs {
+    clear: both;
+  }
+
+  #job {
+    background-color: white;
+    margin-bottom: 10px;
+    font-size: 23px;
+    height: 40px;
+
+  }
+
+  #job1 {
+    background-color: #f2f2f2;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  #title {
+    padding: 8px;
+    display:block;
+  }
+
+  #header{
+    padding-top: 10px;
+    font-size: 27px;
+  }
+  
+  .btn {
+    color: #ffffff ;
+    font-size: 14px;
+    font-family: ‘Roboto’, sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-color: #2196F3 ;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+  
+  h1, p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+</style>
+<div class="container">
+  <div class="profile">
+    <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="">
+    <p><%= @employer.full_name %></p>
+    <p><%= @employer.email %></p>
+    <p><%= @employer.location %></p>
+  </div>
+
+  <div class="profile" style="margin-left: 45px;">
+    <h1>Your Work Profile</h1>
+    <p><%= @employer.full_name %></p>
+    <% if (session[:employer_id] == @employer.id) %>
+      <p><%= link_to 'Logout', logout_path, method: :delete %></p> 
     <% end %>
+  </div>
+
+  <div class="jobs">
+  <% if (session[:employer_id] == @employer.id) %>
+    <h1 id="header">Applications</h1>
+  </div>
+  
+  <% if logged_in? && session[:employer_id] == @employer.id %>
+  <div class="jobs">
+    <div id="job1" style="float: left; width: 87%; "><p>title</p></div> 
+    <div id="job1" style="float: right; width: 12%; "><p>appr.</p></div>
+      <% @applicantions.each do |t, v, e| %>
+      <div id="job" style="float: left; clear: both;">
+        <p><%= link_to t.title, job_path(t.id) %> by <%= link_to e.email, employee_path(e.id) %></p>
+      </div>
+        <% if v == false %>
+        <div id="job" style="float: right; width: 12%; ">
+          <p><%= button_to "approve", approve_path(t.id), class: "btn" %></p> 
+          </div>
+        <% else %>
+        <div id="job" style="float: right; width: 12%; ">
+          <p> <%= button_to "disapprove", disapprove_path(t.id), class: "btn"  %></p> 
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+   <div class="jobs">
+    <h1 id="header">Your jobs</h1>
+     <div id="job1" style="float: left; width: 87%; "><p>title</p></div> 
+    <div id="job1" style="float: right; width: 12%; "><p>del.</p></div>
+    <% @your_jobs.each do |j| %>
+    <div id="job" style="float: left; clear: both;">
+          <p>
+            <%= link_to j.title, job_path(j.id), id: "title" %>
+          </p>
+        </div>
+      <div id="job" style="float: right; width: 12%; ">
+            <p>
+              <%= link_to "del", job_path(j.id) , method: :delete, id: "title2" %>
+            </p>  
+          </div> 
+    <% end %>
+  </div>
   <% end %>
-<% end %>
+  
+</div>

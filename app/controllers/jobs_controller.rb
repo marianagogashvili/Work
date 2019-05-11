@@ -94,8 +94,13 @@ class JobsController < ApplicationController
     end
   end
   def require_employer
-    if !logged_in && session[:employer_id] != @job.employer
+    if logged_in?
+      if session[:employer_id] != @job.employer_id
+        redirect_to root_path
+      end
+    else
       redirect_to root_path
     end
+    
   end
 end

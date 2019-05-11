@@ -58,8 +58,11 @@
   <div class="profile">
     <h1>Your Work Profile</h1>
     <p><%= @employee.full_name %></p>
+    <% if (session[:employee_id] == @employee.id) %>
+    <p><%= link_to 'Logout', logout_path, method: :delete %></p> 
+    <% end %>
   </div>
-
+<% if (session[:employee_id] == @employee.id) %>
   <div class="jobs">
     <h1 id="header">Jobs you've applied for</h1>
     <% if (@your_applications == []) %>
@@ -115,4 +118,5 @@
     <% end %>
     
   </div>
+<% end %>
 </div>

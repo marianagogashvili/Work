@@ -10,14 +10,14 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     if @employee.save
       session[:employee_id] = @employee.id
-      redirect_to employee_path(@employee)
+      redirect_to employee_path(params[:id])
     else
       render 'new'
     end
   end
 
   def show
-    @employee = Employee.find(session[:employee_id])
+    @employee = Employee.find_by(id: params[:id])
     @your_applications = [] 
     for job in JobEmployee.where(employee_id: @employee.id)
       @your_applications.push([Job.find(job.job_id), job.approved])
@@ -34,7 +34,7 @@ class EmployeesController < ApplicationController
 
   def update
     if @employee.update(employee_params)
-      redirect_to employee_path(@employee)
+      redirect_to employee_path(params[:id])
     else
       render 'edit'
     end
@@ -54,12 +54,12 @@ class EmployeesController < ApplicationController
   end
   def require_employee
     if session[:employee_id] != @employee.id
-      redirect_to(:back)
+      redirect_to root_path
     end
   end
   def require_logged_in
     if session[:employee_id] == nil
-      redirect_to(:back)
+      redirect_to login_path
     end
   end
 
