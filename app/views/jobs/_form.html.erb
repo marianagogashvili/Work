@@ -1,20 +1,106 @@
+<style>
+  .container {
+    /*float: center;*/
+    background-color:  #fafafa;
+    padding: 20px;
+    margin: 10%;
+  }
+  .field {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*float: left;*/
+    clear: both;
+  }
+
+  #title {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    width: 300px;
+    height: 40px;
+
+  }
+  #descr {
+    resize: none;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    width: 450px;
+    height: 70px;
+  }
+  #title, #descr, #contr {
+    border: 1px solid #ededed;
+  }
+  #job_contract_type {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+
+    width: 160px;
+   height: 30px;
+   overflow: hidden;
+    border: 1px solid #d3d3d3;
+    
+  }
+  #job_contract_type select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+  }
+
+  #save {
+    color: #ffffff ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-color: #2196F3 ;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+</style>
 <%= form_for @job do |t| %>
-  <%= t.label :title %>
-  <%= t.text_field :title %>
 
-  <%= t.label :description %>
-  <%= t.text_area :description %>
+  <div class="field">
+    <%= t.label :title %>
+    <%= t.text_field :title, id: "title" %>
+  </div>
+  
+  <div class="field">
+    <%= t.label :description %>
+    <%= t.text_area :description, id: "descr" %>
+  </div>
 
-  <%= t.label :contract_type %>
-  <%= t.text_field :contract_type %>
+  <div class="field">
+    <%= t.label :contract_type %>
+    <%= t.select(:contract_type, ['Full-time', 'Part-time', 'Internship', 'Student', 'Temporary'], id: "contr") %>
+  </div>
+  
+  <div class="field" >
+    <%= t.label :vacant %>
+    <% [ true, false].each do |vacant| %>
 
-  <%= t.label :vacant %>
-  <% [ true, false].each do |vacant| %>
-      <br>
-      <%= t.label vacant %>
-      <%= t.radio_button :vacant, vacant %>
-    <% end %>
+        <div style="display:inline; font-size: 20px;">
+          <%= t.radio_button :vacant, vacant %>
+          <%= t.label vacant %>
 
-  <% print(:vacant) %>
-  <%= t.submit 'Save' %>
+        </div>
+        
+      <% end %>
+  </div>
+  <div class="field" >
+    <%= t.submit 'Save', id: "save" %>
+  </div>
+</div>
+
 <% end %>
+
