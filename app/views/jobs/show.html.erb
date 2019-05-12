@@ -1,18 +1,99 @@
-<%= @job.title %>
-<%= @job.employer.full_name %>
-<%= @job.vacant %>
-</br>
-<%= session[:employer_id] %>
+<style>
+  body {
+    background-color: #fafafa;
+  }
+  .container {
+    background-color: white;
+    margin: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .container2 {
+    background-color: white;
+    margin: 20px;
+    padding: 30px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .image {
+    border: 1px solid #d3d3d3;
+    padding: 20px;
+    margin-right: 10px;
+  }
+  .descr {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  p {
+    overflow: auto;
+    white-space:pre-wrap;
+  }
 
-<% if logged_in? %>
-  <% if check? == false && @job.vacant == true %>
-    <%= button_to "apply", apply_path %>
-  <% else %>
-    <%= button_to "apply", apply_path, :disabled => true %>
-  <% end %>
-<% end %>
-<% if !@valid %>
-  <%= button_to "save", save_path(@job.id) %>
-<% else %>
-  <%= button_to "save", save_path(@job.id), :disabled => true %>
-<% end %>  
+  #btn, #btn2 {
+    color: #ffffff ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+  }
+  #btn {
+    background-color: #2196F3 ;
+  }
+  #btn2 {
+    color: #2196F3 ;
+    border: 2px #fafafa solid;
+  }
+
+  .btn {
+    display: inline-block;
+  }
+
+</style>
+<div class="container">
+  <div class="image" style="float: left;">
+    <img src="https://securemedia.newjobs.com/clu/xjp4/xjp4839dex/companylogo.gif" width="180" height="100" alt="">
+  </div>
+  <div class="descr" >
+    <p><%= @job.title %></p> 
+    <p><%= @job.location %></p> 
+  </div>
+  <div class="button">
+    <div class="btn">
+    <% if logged_in? && session[:employee_id] != nil %>
+      <% if check? == false && @job.vacant == true %>
+        <%= button_to "apply", apply_path, id: "btn" %>
+      <% else %>
+        <%= button_to "apply", apply_path, :disabled => true, id: "btn" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="btn">
+  <% if logged_in? && session[:employee_id] != nil %>
+    <% if !@valid %>
+      <%= button_to "save", save_path(@job.id), id: "btn2" %>
+    <% else %>
+      <%= button_to "save", save_path(@job.id), :disabled => true, id: "btn2" %>
+    <% end %> 
+  <% end %> 
+  </div>
+  </div>
+  
+</div>
+
+<div class="container2">
+  <p> <%= @job.description %></p>
+</div>
+
+
+

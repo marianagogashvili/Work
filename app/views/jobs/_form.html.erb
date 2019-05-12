@@ -19,6 +19,7 @@
   #title {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     width: 300px;
     height: 40px;
 
@@ -27,6 +28,7 @@
     resize: none;
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     width: 450px;
     height: 70px;
   }
@@ -96,6 +98,10 @@
         </div>
         
       <% end %>
+  </div>
+  <div class="field">
+    <%= t.label :location %>
+    <%= t.text_field :location, id: "title" %>
   </div>
   <div class="field" >
     <%= t.submit 'Save', id: "save" %>
