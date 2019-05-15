@@ -1,0 +1,9 @@
+<span class="text-muted">
+<% if message.employee.id == nil %>
+  <%= message.employer.full_name %>
+<% else %>
+  <%= message.employer.full_name %> 
+<% end %>
+   at 
+<%= message.timestamp %> says</span><br>
+<%= message.body %>

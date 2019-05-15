@@ -6,5 +6,7 @@ class Employer < ApplicationRecord
   validates :location, presence: true
   validates :branch, presence: true
   
+  has_many :chats, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_secure_password
 end
