@@ -10,7 +10,5 @@ class Employee < ApplicationRecord
   has_many :saved, dependent: :destroy
   has_many :jobs, through: :saved
 
-  has_many :chats, dependent: :destroy
-  has_many :messages, dependent: :destroy
   has_secure_password
 end

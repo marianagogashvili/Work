@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190515182815) do
-
-  create_table "chats", force: :cascade do |t|
-    t.string "title"
-  end
+ActiveRecord::Schema.define(version: 20190516185230) do
 
   create_table "employees", force: :cascade do |t|
     t.string "full_name"
@@ -53,11 +49,6 @@ ActiveRecord::Schema.define(version: 20190515182815) do
     t.datetime "created_at"
     t.integer "employer_id"
     t.string "location"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.text "body"
-    t.datetime "created_at"
   end
 
   create_table "saveds", force: :cascade do |t|

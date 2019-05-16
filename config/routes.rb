@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   post 'job/:job_id/disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
 
   resources :chats, only: [:create, :show]
+
+  mount ActionCable.server => '/cable'
 end

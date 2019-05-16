@@ -1,18 +1,75 @@
+<style>
+  .container {
+    /*float: center;*/
+    background-color:  #fafafa;
+    padding: 20px;
+    margin: 10%;
+  }
+  .field {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*float: left;*/
+    clear: both;
+  }
+
+  #title {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    width: 300px;
+    height: 40px;
+
+  }
+  #title {
+    border: 1px solid #ededed;
+  }
+  #save {
+    color: #ffffff ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-color: #2196F3 ;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+</style>
 <%= form_for @employer do |t| %>
-  <%= t.label :name %>
-  <%= t.text_field :name %>
 
-  <%= t.label :email %>
-  <%= t.text_field :email %>
+  <div class="field">
+    <%= t.label :full_name %>
+    <%= t.text_field :full_name, id: "title" %>
+  </div>
+  
+  <div class="field">
+    <%= t.label :email %>
+    <%= t.text_field :email, id: "title" %>
+  </div>
 
-  <%= t.label :location %>
-  <%= t.text_field :location %>
+  <div class="field">
+    <%= t.label :location %>
+    <%= t.text_field :location, id: "title" %>
+  </div>
 
-  <%= t.label :branch %>
-  <%= t.text_field :branch %>
+  <div class="field">
+    <%= t.label :branch %>
+    <%= t.text_field :branch, id: "title" %>
+  </div>
+  
+  <div class="field">
+    <%= t.label :password %>
+    <%= t.password_field :password, id: "title" %>
+  </div>
 
-  <%= t.label :password %>
-  <%= t.password_field :password %>
- 
-  <%= t.submit 'Save' %>
+  <div class="field" >
+    <%= t.submit 'Save', id: "save" %>
+  </div>
+</div>
+
 <% end %>
