@@ -1,10 +1,64 @@
 
+<style>
+  .container {
+    /*float: center;*/
+    background-color:  #fafafa;
+    padding: 20px;
+    margin: 10%;
+  }
+  .field {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*float: left;*/
+    clear: both;
+  }
+
+  #title {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    width: 300px;
+    height: 40px;
+
+  }
+  #title {
+    border: 1px solid #ededed;
+  }
+  #save {
+    color: #ffffff ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-color: #2196F3 ;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+</style>
+<div class="container">
+
+<h1 class="field">Log in</h1>
 <%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, id: "title" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password , id: "title" %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  </div>
 
-  <%= f.submit "Log in" %>
+  <div class="field" >
+    <%= f.submit "Log in", id: "save" %>
+    </div>
+
 <% end %>
+</div>

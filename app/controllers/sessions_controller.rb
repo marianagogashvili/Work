@@ -1,7 +1,13 @@
 class SessionsController < ApplicationController
 
   def new
-    
+    if logged_in?
+      if current_employee
+        redirect_to employee_path(current_employee)
+      else
+        redirect_to employer_path(current_employer)
+      end
+    end
   end
   def create
     employee = Employee.find_by(email: params[:session][:email].downcase)
