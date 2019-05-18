@@ -4,6 +4,7 @@ class Employee < ApplicationRecord
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}
   validates :address, presence: true
 
+
   has_many :job_employees, dependent: :destroy
   has_many :jobs, through: :job_employees
 

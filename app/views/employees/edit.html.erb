@@ -1,5 +1,150 @@
 <div class="container">
 
 <h1 class="field">Edit</h1>
-<%= render 'form' %> 
+
+<style>
+  .container {
+    /*float: center;*/
+    background-color:  #fafafa;
+    padding: 20px;
+    margin: 10%;
+  }
+  .field {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*float: left;*/
+    clear: both;
+  }
+
+  #title {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    width: 300px;
+    height: 40px;
+
+  }
+  #title {
+    border: 1px solid #ededed;
+  }
+  #save {
+    color: #ffffff ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-color: #2196F3 ;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+  #employee_career_level, #employee_branch, #employee_education {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+
+    width: 160px;
+   height: 30px;
+   overflow: hidden;
+    border: 1px solid #d3d3d3;
+    
+  }
+  #employee_career_level select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+  }
+  #employee_branch select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+  }
+  #employee_education select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+  }
+</style>
+<%= form_for @employee do |t| %>
+<!-- :full_name, :email, :address, :password, :education, :career_level, :branch) -->
+  <div class="field">
+    <%= t.label :full_name %>
+    <%= t.text_field :full_name, id: "title" %>
+  </div>
+  
+  <div class="field">
+    <%= t.label :email %>
+    <%= t.text_field :email, id: "title" %>
+  </div>
+
+  <div class="field">
+    <%= t.label :address %>
+    <%= t.text_field :address, id: "title" %>
+  </div>
+
+  <div class="field">
+    <%= t.label :education %>
+    
+    <select name="employee[education][]" id="employee_education" >
+    <%= ['School', 'Bachelor', 'Masters', 'PhD', 'PostDoc'].each do |f| %>
+      <% if ((@ed != nil ? @ed[0] : 'School') == f) %>
+        <option value="<%= f %>" selected><%= f %></option>
+      <% else %>
+        <option value="<%= f %>"><%= f %></option>
+      <% end %>
+    <% end %>
+      
+    </select>
+    
+    <input  placeholder="Place where you've studied" id="title" type="text" name="employee[education][]"  value="<%= @ed != nil ? @ed[1] : '' %>" />
+    <div class="field">
+      
+      <input placeholder="Course of studies" id="title" type="text" name="employee[education][]" value="<%= @ed != nil ? @ed[2] : '' %>" />
+    </div>
+  </div>
+
+  <div class="field">
+    <%= t.label :career_level %>
+    <%= t.select(:career_level, ['Entry level', 'Intermediate', 'First-Level', 'Middle-Level', 'Senior or Top-Level']) %>
+  </div>
+
+  <div class="field">
+    <%= t.label :branch %>
+    <%= t.select(:branch, ['IT', 'Physics', 'Chemistry', 'Engineering', 'Medicine']) %>
+  </div>
+  
+  <div class="field">
+    <%= t.label :password %>
+    <%= t.password_field :password, id: "title" %>
+  </div>
+
+  <div class="field" >
+    <%= t.submit 'Save', id: "save" %>
+  </div>
+</div>
+
+<% end %>
+
 </div>

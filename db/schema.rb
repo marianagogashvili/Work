@@ -10,17 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190516185230) do
+ActiveRecord::Schema.define(version: 20190517191859) do
 
   create_table "employees", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
     t.string "address"
-    t.string "education"
     t.string "career_level"
-    t.string "type"
     t.string "branch"
     t.string "password_digest"
+    t.text "education", default: "--- []\n"
   end
 
   create_table "employers", force: :cascade do |t|
