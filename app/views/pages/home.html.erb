@@ -1,2 +1,26 @@
 <%= session[:employer_id] %>
 <%= session[:employee_id] %>
+<form action="" method="POST">
+
+  <input value="<%= params[:name] %>" name="search[]" type="text">
+
+  <select name="search[]" id="">
+  <%= ['Full-time', 'Part-time', 'Internship', 'Student', 'Temporary'].each do |f| %>
+    <% if (params[:type] == f) %>
+      <option value="<%= f %>" selected><%= f %></option>
+    <% else %>
+      <option value="<%= f %>"><%= f %></option>
+    <% end %>
+  <% end %>
+  </select>
+
+  <input value="<%= params[:location] %>" name="search[]" type="text">
+
+  <input type="submit">
+</form>
+
+<% if @jobs != nil %>
+  <% @jobs.each do |t| %>
+    <%= t.id %> <%= t.title %>
+  <% end %>
+<% end %>

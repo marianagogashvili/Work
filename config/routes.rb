@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root 'pages#home'
+  get 'home', to: 'pages#home', as: "root"
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   post 'job/:job_id/disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
 
   resources :chats, only: [:create, :show]
-
+  post 'home', to: 'pages#home2'
   mount ActionCable.server => '/cable'
 end
