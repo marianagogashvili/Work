@@ -61,9 +61,16 @@
 
 </style>
 <div class="container">
+  <% if (@job.photo != '') %>
   <div class="image" style="float: left;">
-    <img src="https://securemedia.newjobs.com/clu/xjp4/xjp4839dex/companylogo.gif" width="180" height="100" alt="">
+    <img src="<%= @job.photo %>" width="180" height="100" alt="">
   </div>
+  <% else %>
+   <div class="image" style="float: left;">
+      <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="">
+    </div>
+  <% end %>
+ 
   <div class="descr" >
     <p><%= @job.title %></p> 
     <p><%= @job.location %></p> 

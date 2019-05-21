@@ -49,7 +49,7 @@ class EmployersController < ApplicationController
 
   private
   def employer_params
-    params.require(:employer).permit(:full_name, :email, :location, :branch, :password)
+    params.require(:employer).permit(:full_name, :email, :location, :branch, :photo, :password)
   end
   def set_employer
     @employer = Employer.find(params[:id])

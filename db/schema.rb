@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190517191859) do
+ActiveRecord::Schema.define(version: 20190521164826) do
 
   create_table "employees", force: :cascade do |t|
     t.string "full_name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20190517191859) do
     t.string "branch"
     t.string "password_digest"
     t.text "education", default: "--- []\n"
+    t.string "photo"
   end
 
   create_table "employers", force: :cascade do |t|
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20190517191859) do
     t.string "type"
     t.string "branch"
     t.string "password_digest"
+    t.string "photo"
   end
 
   create_table "job_employees", force: :cascade do |t|
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 20190517191859) do
     t.datetime "created_at"
     t.integer "employer_id"
     t.string "location"
+    t.string "photo"
   end
 
   create_table "saveds", force: :cascade do |t|

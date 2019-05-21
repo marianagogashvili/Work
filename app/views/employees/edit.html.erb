@@ -134,6 +134,11 @@
     <%= t.label :branch %>
     <%= t.select(:branch, ['IT', 'Physics', 'Chemistry', 'Engineering', 'Medicine']) %>
   </div>
+
+  <div class="field">
+    <%= t.label :photo %>
+    <%= t.text_field :photo, id: "title" %>
+  </div>
   
   <div class="field">
     <%= t.label :password %>

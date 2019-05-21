@@ -83,7 +83,7 @@ class JobsController < ApplicationController
     @valid = Saved.find_by(job_id: @job.id, employee_id: session[:employee_id])
   end
   def job_params
-    params.require(:job).permit(:title, :description, :contract_type, :vacant, :location, :employer_id)
+    params.require(:job).permit(:title, :description, :contract_type, :vacant, :location, :photo, :employer_id)
   end
   def set_job
     @job = Job.find(params[:id])

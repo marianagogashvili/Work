@@ -48,7 +48,12 @@
 </style>
 <div class="container">
   <div class="profile">
+  <% if (@employee.photo != '') %>
+    <img src="<%= @employee.photo %>" width="200" height="200" alt="">
+  <% else %>
     <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="">
+  <% end %>
+    
     <p><%= @employee.full_name %></p>
     <p><%= @employee.email %></p>
     <p><%= @employee.address %></p>
