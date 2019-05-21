@@ -14,8 +14,20 @@
   <% end %>
   </select>
 
+
+
   <input value="<%= params[:location] %>" name="search[]" type="text">
 
+  <select name="search[]" id="">
+  <%= ['Today', 'Yesterday', 'Last 7 days', 'Last 14 days', 'Last month'].each do |f| %>
+    <% if (params[:time] == f) %>
+      <option value="<%= f %>" selected><%= f %></option>
+    <% else %>
+      <option value="<%= f %>"><%= f %></option>
+    <% end %>
+  <% end %>
+  </select>
+  
   <input type="submit">
 </form>
 

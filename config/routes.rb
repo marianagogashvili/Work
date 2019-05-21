@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'home', to: 'pages#home', as: "root"
 
+  post 'home', to: 'pages#home2'
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
@@ -23,6 +25,4 @@ Rails.application.routes.draw do
   post 'job/:job_id/disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
 
   resources :chats, only: [:create, :show]
-  post 'home', to: 'pages#home2'
-  mount ActionCable.server => '/cable'
 end

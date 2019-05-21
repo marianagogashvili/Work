@@ -6,13 +6,13 @@ class JobsController < ApplicationController
   before_action :find_saved, only: [:save, :show]
 
   def index
-    @jobs = Job.all
+    # @jobs = Job.all
     # @jobs2 = Job.where(["title LIKE ?", "%#{search}%"]).where(["contract_type = ", "%#{search}%"]).where("vacant = true")
-    title = "title";
-    ct = "part-time";
-    location = "";
-    @jobs2 = Job.where("title LIKE '%" + title + "%'" ).where("contract_type LIKE '%" + ct + "%'").where("vacant = ?", true).where("location = ?", location);
-    print(@jobs2);
+    # title = "title";
+    # ct = "part-time";
+    # location = "";
+    # @jobs2 = Job.where("title LIKE '%" + title + "%'" ).where("contract_type LIKE '%" + ct + "%'").where("vacant = ?", true).where("location = ?", location);
+    # print(@jobs2);
   end
 
   # def search
@@ -52,7 +52,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.employer = Employer.find(session[:employer_id])
-    @job.created_at = Time.now
+    @job.created_at = Time.now.strftime("%Y-%m-%d")
     
     if @job.save
       redirect_to job_path(@job)
@@ -61,7 +61,7 @@ class JobsController < ApplicationController
     end
   end
   def show
-    
+    print(Date.current())
   end
   def edit
     
