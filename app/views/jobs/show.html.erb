@@ -1,15 +1,16 @@
 <style>
   body {
-    background-color: #fafafa;
+    background-color: #ffffff;
   }
   .container {
-    background-color: white;
+    background-color: #fafafa;
     margin: 20px;
     padding: 10px;
     margin-bottom: 20px;
+    margin-top: 85px;
   }
   .container2 {
-    background-color: white;
+    background-color: #fafafa;
     margin: 20px;
     padding: 30px;
     margin-bottom: 20px;
@@ -60,6 +61,8 @@
   }
 
 </style>
+<%= render "layouts/header" %>
+
 <div class="container">
   <% if (@job.photo != '') %>
   <div class="image" style="float: left;">
@@ -102,6 +105,4 @@
 <div class="container2">
   <p> <%= @job.description %></p>
 </div>
-
-
 

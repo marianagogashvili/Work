@@ -70,8 +70,7 @@
 
 </style>
 <div class="cont">
-  <form action="" method="POST">
-
+  <%= form_tag("/home", method: "post") do %>
     <input value="<%= params[:name] %>" name="search[]" type="text" id="t1" placeholder="position">
 
     <input value="<%= params[:location] %>" name="search[]" type="text" id="t1" placeholder="location">
@@ -106,5 +105,5 @@
         <a href="<%= employer_path(current_employer) %>"><img src="<%= current_employer.photo %>" alt="" width="33" height="33" class="img"></a>
       <% end %>
     <% end %>
-  </form>
+  <% end %>
 </div>
