@@ -1,38 +1,10 @@
-<%= session[:employer_id] %>
-<%= session[:employee_id] %>
-<form action="" method="POST">
+<%= render "layouts/header" %>
 
-  <input value="<%= params[:name] %>" name="search[]" type="text">
-
-  <select name="search[]" id="">
-  <%= ['Full-time', 'Part-time', 'Internship', 'Student', 'Temporary'].each do |f| %>
-    <% if (params[:type] == f) %>
-      <option value="<%= f %>" selected><%= f %></option>
-    <% else %>
-      <option value="<%= f %>"><%= f %></option>
-    <% end %>
-  <% end %>
-  </select>
-
-
-
-  <input value="<%= params[:location] %>" name="search[]" type="text">
-
-  <select name="search[]" id="">
-  <%= ['Today', 'Yesterday', 'Last 7 days', 'Last 14 days', 'Last month'].each do |f| %>
-    <% if (params[:time] == f) %>
-      <option value="<%= f %>" selected><%= f %></option>
-    <% else %>
-      <option value="<%= f %>"><%= f %></option>
-    <% end %>
-  <% end %>
-  </select>
-  
-  <input type="submit">
-</form>
-
+<div id="cont">
 <% if @jobs != nil %>
-  <% @jobs.each do |t| %>
-    <%= t.id %> <%= t.title %>
-  <% end %>
+    <% @jobs.each do |t| %>
+      <p><%= t.id %> <%= t.title %></p> 
+    <% end %>
 <% end %>
+</div>
+

@@ -1,5 +1,4 @@
 
-
 <style>
   p {
     margin: 5px;
@@ -9,6 +8,7 @@
   }
   .profile {
     float: left;
+    margin-top:65px;
   }
   .jobs {
     clear: both;
@@ -61,9 +61,11 @@
   }
 
 </style>
+<%= render "layouts/header" %>
+
 <div class="container">
   <div class="profile">
-  <% if (@employer.photo != nil) %>
+  <% if (@employer.photo != '') %>
     <img src="<%= @employer.photo %>" width="200" height="200" alt="">
   <% else %>
     <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="">
