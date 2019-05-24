@@ -1,10 +1,149 @@
-<%= render "layouts/header" %>
 
-<div id="cont">
+<%= render "layouts/header" %>
+<style>
+  
+  body {
+    background-color: #f5f5f5;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+  }
+
+  .container {
+    /*float: left;*/
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  #cont {
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 30%;
+    overflow-y: auto;
+    height: 615px;
+
+  }
+
+  #cont3 {
+    float: left;
+    margin-left: 30px;
+    width: 65%;
+  }
+
+  #cont2 {
+    background-color: #ffffff;
+    padding: 10px;
+  }
+
+  hr {
+    border-right : 0;
+    border-left: 0;
+    width: 100%;
+    opacity: 0.25;
+  }
+
+  .image {
+    border: 1px solid #d3d3d3;
+    /*padding: 20px;*/
+    margin: 10px;
+    margin-right: 10px;
+  }
+
+  .descr {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  
+  .contain {
+    background-color: #ffffff;
+    margin: 20px;
+    padding: 10px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    margin-top: 85px;
+    /*overflow: hidden;*/
+    /*overflow-y: scroll;*/
+  }
+  
+  .contain2 {
+    background-color: #ffffff;
+    margin: 20px;
+    padding: 30px 30px 0 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    overflow-y: auto;
+    height: 400px;
+  }
+  
+  p {
+    overflow: auto;
+    white-space:pre-wrap;
+    /*writing-mode: vertical-rl;*/
+    /*text-orientation: upright;*/
+    word-wrap:break-word;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 1015px) {
+    #cont {
+      width: 100%;
+    }
+    #cont3 {
+      width: 100%;
+    }
+  }
+</style>
 <% if @jobs != nil %>
-    <% @jobs.each do |t| %>
-      <p><%= t.id %> <%= t.title %></p> 
+<div class="container">
+  <div id="cont">
+    <% if @jobs != nil %>
+        <% @jobs.each do |t| %>
+        
+          <div id="cont2">
+            <p><%= t.id %> <%= link_to t.title, request.params.merge(job_id: t.id) %> </p> 
+          </div>
+          <hr>
+        <% end %>
     <% end %>
-<% end %>
+  </div>
+
+  <div id="cont3">
+    <div class="contain">
+       <% if (@job.photo != '') %>
+        <div class="image" style="float: left;">
+          <img src="<%= @job.photo %>" width="180" height="100" alt="">
+        </div>
+      <% else %>
+       <div class="image" style="float: left;">
+          <img src="https://securemedia.newjobs.com/clu/xjp4/xjp4839dex/companylogo.gif" width="180" height="100" alt="">
+        </div>
+      <% end %>
+      
+
+      <div class="descr" >
+      <% #if (@job != nil) %>
+        <p><%= @job.title %></p> 
+        <p><%= @job.location %></p> 
+      <% #end %>
+      
+      </div>
+    </div>
+
+    <div class="contain2">
+      <p><%= @job.description %> </p>
+    </div>
+  
+  </div>
 </div>
 
+<% else %>
+<p style="margin-top: 100px;"> no jobs found</p>
+
+<% end %>

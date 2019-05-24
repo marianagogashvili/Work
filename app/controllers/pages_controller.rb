@@ -22,7 +22,17 @@ class PagesController < ApplicationController
     else
       @jobs = Job.where("title LIKE ? AND contract_type = ? AND location LIKE ? AND created_at >= ?", "%#{params[:name]}%", "#{params[:type]}", "%#{params[:location]}%", "#{time}")
     end
+
+    if params[:job_id] != nil
+      @job = Job.find(params[:job_id])
+    else
+      if @jobs != nil
+        @job = @jobs.first
+      end
+    end
+
   end
+
   def home2
     @search = params[:search]
     redirect_to controller: 'pages', action: 'home', name: @search[0], location: @search[1], type: @search[2], time: @search[3]
