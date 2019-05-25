@@ -45,7 +45,12 @@
   a {
     text-decoration: none;
   }
-
+  
+  @media screen and (max-width: 1015px) {
+    .container {
+      margin-top: 60px;
+    }
+  }
 </style>
 <%= render "layouts/header" %>
 
@@ -63,7 +68,7 @@
     <p><%= @employee.full_name %></p>
   </div>
 
-  <div class="profile">
+  <div class="profile" >
     <h1>Your Work Profile</h1>
     <p><%= @employee.full_name %></p>
     <% if (session[:employee_id] == @employee.id) %>

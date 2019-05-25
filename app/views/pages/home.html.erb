@@ -6,7 +6,7 @@
     background-color: #f5f5f5;
     overflow-y: hidden;
     overflow-x: hidden;
-
+    font-family: 'Roboto', sans-serif;
   }
 
   .container {
@@ -60,7 +60,7 @@
   
   .contain {
     background-color: #ffffff;
-    margin: 20px;
+    /*margin: 20px;*/
     padding: 10px;
     padding-bottom: 30px;
     margin-bottom: 20px;
@@ -71,9 +71,10 @@
   
   .contain2 {
     background-color: #ffffff;
-    margin: 20px;
+    /*margin: 20px;*/
     padding: 30px 30px 0 30px;
-    font-family: 'Roboto', sans-serif;
+    /*margin-bottom: 20px;*/
+    
     font-size: 20px;
     font-weight: 300;
     overflow-y: auto;
@@ -90,7 +91,27 @@
   a {
     text-decoration: none;
   }
+  a:hover {
+    text-decoration: underline;
+  }
+  #name, #name2 {
+    display: inline-block;
+  }
 
+  #name2{
+    float: right;
+    font-size: 13px;
+  }
+  
+  #name1 {
+    margin:0px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: grey;
+  }
+  a {
+    color: inherit;
+  } 
   @media screen and (max-width: 1015px) {
     #cont {
       width: 100%;
@@ -107,7 +128,10 @@
         <% @jobs.each do |t| %>
         
           <div id="cont2">
-            <p><%= t.id %> <%= link_to t.title, request.params.merge(job_id: t.id) %> </p> 
+            <p id="name"><%= link_to t.title, request.params.merge(job_id: t.id) %></p>
+            <p id="name2"> <%= time_ago_in_words(t.created_at) %> ago </p>
+            <p id="name1"><%= link_to t.employer.full_name, employer_path(t.employer.id) %></p> 
+            
           </div>
           <hr>
         <% end %>
