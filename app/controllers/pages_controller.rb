@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     if params[:job_id] != nil
       @job = Job.find(params[:job_id])
     else
-      if @jobs != nil
+      if @jobs.ids != []
         @job = @jobs.first
       end
     end

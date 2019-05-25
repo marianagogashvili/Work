@@ -124,7 +124,7 @@
 <% if @jobs != nil %>
 <div class="container">
   <div id="cont">
-    <% if @jobs != nil %>
+    <% if @jobs.ids != [] %>
         <% @jobs.each do |t| %>
         
           <div id="cont2">
@@ -135,9 +135,12 @@
           </div>
           <hr>
         <% end %>
+
+    <% else %>
+      <p style="margin-left: 10px;">No jobs found :(</p>
     <% end %>
   </div>
-
+<% if @jobs.ids != [] %>
   <div id="cont3">
     <div class="contain">
        <% if (@job.photo != '') %>
@@ -165,6 +168,7 @@
     </div>
   
   </div>
+<% end %>
 </div>
 
 <% else %>

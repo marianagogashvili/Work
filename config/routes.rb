@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   
 
   post 'apply/:id', to: 'job_employees#create', as: "apply"
+  delete 'apply/:id/:employee', to: 'job_employees#destroy', as: "delete_apply"
   post 'job/:job_id/approve/:id',to: 'job_employees#approve', as: "approve"
   post 'job/:job_id/disapprove/:id',to: 'job_employees#disapprove', as: "disapprove"
 

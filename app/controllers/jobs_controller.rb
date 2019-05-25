@@ -6,31 +6,15 @@ class JobsController < ApplicationController
   before_action :find_saved, only: [:save, :show]
 
   def index
-    # @jobs = Job.all
-    # @jobs2 = Job.where(["title LIKE ?", "%#{search}%"]).where(["contract_type = ", "%#{search}%"]).where("vacant = true")
-    # title = "title";
-    # ct = "part-time";
-    # location = "";
-    # @jobs2 = Job.where("title LIKE '%" + title + "%'" ).where("contract_type LIKE '%" + ct + "%'").where("vacant = ?", true).where("location = ?", location);
-    # print(@jobs2);
+   
   end
 
-  # def search
-  #   @search = []
-  #   if params[:country]
-  #     print("===================")
-  #     # @jobs = Job.search(params[:country]).order("created_at DESC")
-  #   else
-  #     redirect_to root_path
-  #     # @jobs = Job.all.order('created_at DESC')
-  #   end
-  # end
 
   def save
     s = Saved.new(employee_id: session[:employee_id], job_id: @job.id)
     if !@valid
       if s.save
-        redirect_to job_path(@job)
+        redirect_to employee_path(session[:employee_id])
       else
         redirect_to root_path
       end

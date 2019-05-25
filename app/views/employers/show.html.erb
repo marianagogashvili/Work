@@ -139,23 +139,45 @@ a {
    <h1 id="header">Applications</h1>
   </div>
      <% if @applicantions != [] %>
+     <% if (session[:employer_id] == @employer.id) %>
+    
     <div class="jobs">
       <div id="job1" style="float: left; width: 87%; "><p>title</p></div> 
       <div id="job1" style="float: right; width: 12%; "><p>appr.</p></div>
-      <% @applicantions.each do |t, v, e| %>
-      <div id="job" style="float: left; clear: both;">
-        <p><%= link_to t.title, job_path(t.id) %> by <%= link_to e.email, employee_path(e.id) %></p>
-      </div>
-      <% if v == false %>
-        <div id="job" style="float: right; width: 12%; ">
-          <p><%= button_to "approve", approve_path(t.id), class: "btn" %></p> 
+        <% @applicantions.each do |t, v, e| %>
+        <div id="job" style="float: left; clear: both;">
+          <p><%= link_to t.title, job_path(t.id) %> by <%= link_to e.email, employee_path(e.id) %></p>
         </div>
+          <% if v == false %>
+            <div id="job" style="float: right; width: 12%; ">
+              <p><%= button_to approve_path(t.id), class: "btn", style: "background-color: rgb(144,238,144);" do %>
+                <i class="fas fa-check fa-lg"></i>
+                <% end %>
+              </p> 
+            </div>
+          <% else %>
+          <div id="job" style="float: right; width: 12%; ">
+            <p> <%= button_to  disapprove_path(t.id), class: "btn", style: "background-color: #C60D25;" do %>
+              <i class="fas fa-times-circle fa-lg"></i>
+              <% end %>
+            </p> 
+          </div>
+          <% end %>
+
+        <% end %>
+
       <% else %>
-      <div id="job" style="float: right; width: 12%; ">
-        <p> <%= button_to "disapprove", disapprove_path(t.id), class: "btn"  %></p> 
-      </div>
+      <div class="jobs">
+      <div id="job1" style="float: left; width: 100%; "><p>title</p></div> 
+      
+        <% @applicantions.each do |t, v, e| %>
+        <div id="job" style="float: left; clear: both;">
+          <p><%= link_to t.title, job_path(t.id) %> by <%= link_to e.email, employee_path(e.id) %></p>
+        </div>
+        <% end %>
+
       <% end %>
-    <% end %>
+
 
      </div>
   <% else %>
@@ -174,9 +196,11 @@ a {
 
       <% if (session[:employer_id] == @employer.id) %>
       
-      <div id="job1" style="float: left; width: 87%; "><p>title</p></div> 
+      <div id="job1" style="float: left; width: 74%; "><p>title</p></div> 
 
       <div id="job1" style="float: right; width: 12%; "><p>del.</p></div>
+      <div id="job1" style="float: right; width: 12%; "><p>edit</p></div>
+
         <% @your_jobs.each do |j| %>
         <div id="job" style="float: left; clear: both;">
           <p>
@@ -186,6 +210,11 @@ a {
         <div id="job" style="float: right; width: 12%; ">
           <p>
             <%= link_to "del", job_path(j.id) , method: :delete, id: "title2" %>
+          </p>  
+        </div> 
+        <div id="job" style="float: right; width: 12%; ">
+          <p>
+            <%= link_to "edit", edit_job_path(j.id), id: "title2" %>
           </p>  
         </div> 
         <% end %>

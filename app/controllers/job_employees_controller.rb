@@ -7,11 +7,20 @@ class JobEmployeesController < ApplicationController
       @job = Job.find(params[:id])
       if check() == false
         if @job.vacant = true
-          @job_employee.save
+          if @job_employee.save
+            redirect_to employee_path(session[:employee_id])
+          end
         end
       end
     else
       redirect_to jobs_path
+    end
+  end
+
+  def destroy
+    @job_employee = JobEmployee.find_by(employee_id: params[:employee], job_id: params[:id])
+    if @job_employee.destroy
+      redirect_to employee_path(session[:employee_id])
     end
   end
 
