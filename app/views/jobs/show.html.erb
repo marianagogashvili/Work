@@ -82,9 +82,9 @@
     <div class="btn">
     <% if logged_in? && session[:employee_id] != nil %>
       <% if check? == false && @job.vacant == true %>
-        <%= button_to "apply", apply_path, id: "btn" %>
+        <%= button_to "apply", apply_path(@job.id), id: "btn" %>
       <% else %>
-        <%= button_to "apply", apply_path, :disabled => true, id: "btn" %>
+        <%= button_to "delete application", delete_apply_path(@job.id, session[:employee_id]), method: :delete, id: "btn" %>
       <% end %>
     <% end %>
   </div>
@@ -94,7 +94,7 @@
     <% if !@valid %>
       <%= button_to "save", save_path(@job.id), id: "btn2" %>
     <% else %>
-      <%= button_to "save", save_path(@job.id), :disabled => true, id: "btn2" %>
+      <%= button_to "delete save", del_save_path(@job.id), method: :delete, id: "btn2" %>
     <% end %> 
   <% end %> 
   </div>

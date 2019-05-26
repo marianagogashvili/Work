@@ -8,7 +8,32 @@
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
   }
+  
+  #btn, #btn2 {
+    color: #ffffff ;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 16px;
+    padding-right: 16px ;
+    height: 36px;
+    background-image: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+    margin-bottom: 5px;
+    margin-left: 5px;
 
+  }
+  #btn {
+    background-color: #2196F3 ;
+  }
+  #btn2 {
+    color: #2196F3 ;
+    border: 2px #fafafa solid;
+  }
+
+  .btn {
+    display: inline-block;
+  }
   .container {
     /*float: left;*/
     display: inline-block;
@@ -112,6 +137,7 @@
   a {
     color: inherit;
   } 
+
   @media screen and (max-width: 1015px) {
     #cont {
       width: 100%;
@@ -127,12 +153,11 @@
     <% if @jobs.ids != [] %>
         <% @jobs.each do |t| %>
         
-          <div id="cont2">
-            <p id="name"><%= link_to t.title, request.params.merge(job_id: t.id) %></p>
-            <p id="name2"> <%= time_ago_in_words(t.created_at) %> ago </p>
-            <p id="name1"><%= link_to t.employer.full_name, employer_path(t.employer.id) %></p> 
-            
-          </div>
+            <div id="cont2">
+              <p id="name"><%= link_to t.title, request.params.merge(job_id: t.id) %></p>
+              <p id="name2"> <%= time_ago_in_words(t.created_at) %> ago </p>
+              <p id="name1"><%= link_to t.employer.full_name, employer_path(t.employer.id) %></p>  
+            </div>
           <hr>
         <% end %>
 
@@ -156,11 +181,36 @@
 
       <div class="descr" >
       <% #if (@job != nil) %>
-        <p><%= @job.title %></p> 
+        <p><%= link_to @job.title, job_path(@job.id) %></p> 
         <p><%= @job.location %></p> 
       <% #end %>
-      
+        
       </div>
+      <% if logged_in? && session[:employee_id] != nil %>
+      <div class="buttons">
+       <div class="btn">
+        <% if logged_in? && session[:employee_id] != nil %>
+          <!-- if check? == false -->
+          <% if JobEmployee.find_by(job_id: params[:job_id], employee_id: session[:employee_id]) == nil && @job.vacant == true %>
+            <%= button_to "apply", apply_path(params[:job_id]), id: "btn" %>
+          <% else %>
+            <%= button_to "delete application", delete_apply_path(params[:job_id], session[:employee_id]), method: :delete, id: "btn" %>
+          <% end %>
+        <% end %>
+        </div>
+
+        <div class="btn">
+        <% if logged_in? && session[:employee_id] != nil %>
+          <% if !Saved.find_by(job_id: params[:job_id], employee_id: session[:employee_id]) %>
+            <%= button_to "save", save_path(params[:job_id]), id: "btn2" %>
+          <% else %>
+            <%= button_to "delete save", del_save_path(params[:job_id]), method: :delete, id: "btn2" %>
+          <% end %> 
+        <% end %> 
+        </div>
+
+      </div>
+      <% end %>
     </div>
 
     <div class="contain2">
