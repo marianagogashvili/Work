@@ -35,6 +35,19 @@
     padding-top: 10px;
     font-size: 27px;
   }
+
+  .btn3 {
+    color: black ;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #f2f2f2 ;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+
+  #btn3 {
+    margin-top: 20px;
+  }
   
   h1, p {
     font-family: 'Roboto', sans-serif;
@@ -72,7 +85,7 @@
     <h1>Your Work Profile</h1>
     <p><%= @employee.full_name %></p>
     <% if (session[:employee_id] == @employee.id) %>
-    <p><%= link_to 'Logout', logout_path, method: :delete %></p> 
+    <p id="btn3"><%= link_to 'Edit', edit_employee_path(@employee.id), class: "btn3" %>  <%= link_to 'Logout', logout_path, method: :delete, class: "btn3" %></p> 
     <% end %>
   </div>
 <% if (session[:employee_id] == @employee.id) %>
