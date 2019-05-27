@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get 'home', to: 'pages#home', as: "root"
-  post 'home', to: 'pages#home2'
-  # post 'home/:id', to: 'pages#job', as: "select_job"
+  root 'pages#root'
+  get 'home', to: 'pages#home'
+  post 'home', to: 'pages#home1'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

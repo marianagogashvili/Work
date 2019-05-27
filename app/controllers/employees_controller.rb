@@ -10,6 +10,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     if @employee.save
       session[:employee_id] = @employee.id
+      UsermailerMailer.registered_email(@employee).deliver_later
       redirect_to employee_path(@employee.id)
     else
       render 'new'

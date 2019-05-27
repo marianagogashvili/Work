@@ -8,6 +8,7 @@ class EmployersController < ApplicationController
     @employer = Employer.new(employer_params)
     if @employer.save
       session[:employer_id] = @employer.id
+      UsermailerMailer.registered_email2(@employer).deliver_later
       redirect_to employer_path(@employer)
     else
       render 'new'
@@ -50,7 +51,7 @@ class EmployersController < ApplicationController
 
   private
   def employer_params
-    params.require(:employer).permit(:full_name, :email, :location, :branch, :photo, :password)
+    params.require(:employer).permit(:full_name, :email, :location,  :photo, :password)
   end
   def set_employer
     @employer = Employer.find(params[:id])

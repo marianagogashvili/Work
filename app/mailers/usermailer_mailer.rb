@@ -16,4 +16,14 @@ class UsermailerMailer < ApplicationMailer
 
     mail(to: @employee.email, subject: 'Job request rejected')
   end
+  def registered_email(employee)
+    @employee = employee
+    @url = 'localhost:3000/employees/' + employee.id.to_s
+    mail(to: @employee.email, subject: 'Registered at Work.com')
+  end
+  def registered_email2(employer)
+    @employer = employer
+    @url = 'localhost:3000/employers/' + employer.id.to_s
+    mail(to: @employer.email, subject: 'Registered at Work.com')
+  end
 end

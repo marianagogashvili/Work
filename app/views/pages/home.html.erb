@@ -150,6 +150,7 @@
   } 
 
   @media screen and (max-width: 1015px) {
+    
     #cont {
       width: 100%;
     }
@@ -157,7 +158,14 @@
       width: 100%;
     }
   }
+
+  @media screen and (max-width: 200px) {
+    #cont {
+      margin-top: 1000px;
+    }
+  }
 </style>
+
 
 <% if @js != nil %>
 <div class="container">
@@ -183,7 +191,7 @@
          <p class="btn4"><%= link_to 'Go back', request.params.merge(page: params[:page].to_i-1), id: "btn4" %></p>
       <% end %>
     <% else %>
-      <% if params[:page].to_i != 1 %>
+      <% if params[:page].to_i != 1 && params[:page] != nil %>
          <p class="btn4"><%= link_to 'Go back', request.params.merge(page: params[:page].to_i-1), id: "btn4" %></p>
       <% end %>
     <% end %>
@@ -198,7 +206,7 @@
       <% else %>
        <div class="image" style="float: left;">
           <img src="https://www.solidbackgrounds.com/images/2560x1440/2560x1440-davys-grey-solid-color-background.jpg" width="180" height="100" alt="">
-        </div>
+       </div>
       <% end %>
       
 
