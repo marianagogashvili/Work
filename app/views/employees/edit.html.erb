@@ -1,8 +1,8 @@
-<div class="container">
-
-<h1 class="field">Edit</h1>
 
 <style>
+body {
+  font-family: 'Roboto', sans-serif;
+}
   .container {
     /*float: center;*/
     background-color:  #fafafa;
@@ -11,7 +11,7 @@
   }
   .field {
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
     font-weight: 300;
     font-size: 25px;
     margin-top: 20px;
@@ -34,7 +34,6 @@
   #save {
     color: #ffffff ;
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
     padding-left: 16px;
     padding-right: 16px ;
     height: 36px;
@@ -43,16 +42,25 @@
     border: 0px #fff solid ;
     border-radius: 2px ;
   }
+  #del {
+    padding: 10px;
+    color: #ffffff ;
+    font-size: 18px;
+    background-color: #ff6666;
+    text-decoration: none;
+    border: 0px #fff solid ;
+    border-radius: 2px ;
+  }
+
   #employee_career_level, #employee_branch, #employee_education {
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-
+    /*font-family: 'Roboto', sans-serif;*/
     width: 160px;
-   height: 30px;
-   overflow: hidden;
-    border: 1px solid #d3d3d3;
-    
+    height: 30px;
+    overflow: hidden;
+    border: 1px solid #d3d3d3;  
   }
+
   #employee_career_level select {
    background: transparent;
    width: 268px;
@@ -99,6 +107,9 @@
   }
 </style>
 <%= render "layouts/header" %>
+<div class="container">
+
+<h1 class="field">Edit</h1>
 
 <%= form_for @employee do |t| %>
 <!-- :full_name, :email, :address, :password, :education, :career_level, :branch) -->
@@ -161,8 +172,8 @@
   <div class="field" >
     <%= t.submit 'Save', id: "save" %>
   </div>
-</div>
-
 <% end %>
-
+  <div>
+    <p>Do you want to delete your account? <%= link_to 'Delete', employee_path(@employee.id), method: :delete, id: "del" %></p>
+  </div>
 </div>

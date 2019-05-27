@@ -20,6 +20,7 @@
     border-radius: 50%;
     border: 1px solid #2196F3;
   }
+
   #job_type {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
@@ -104,11 +105,21 @@
 
     <% if (logged_in?) %>
       <% if (current_employee != nil) %>
-        <a href="<%= employee_path(current_employee) %>"><img src="<%= current_employee.photo %>" alt="" width="33" height="33" class="img"></a>
+        <% if (current_employee.photo != nil && current_employee.photo != '') %>
+          <a href="<%= employee_path(current_employee) %>"><img src="<%= current_employee.photo %>" alt="" width="33" height="33" class="img"></a>
+        <% else %>
+          <a href="<%= employee_path(current_employee) %>"><img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="" width="33" height="33" class="img"></a>
+        <% end %>
       <% elsif (current_employer != nil) %>
         <span></span>
-        <a href="<%= employer_path(current_employer) %>"><img src="<%= current_employer.photo %>" alt="" width="33" height="33" class="img"></a>
+        <% if (current_employer.photo != nil && current_employer.photo != '') %>
+          <a href="<%= employer_path(current_employer) %>"><img src="<%= current_employer.photo %>" alt="" width="33" height="33" class="img"></a>
+        <% else %>
+          <a href="<%= employee_path(current_employer) %>"><img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="" width="33" height="33" class="img"></a>
+        <% end %>
       <% end %>
+    <% else %>
+       <a href="<%= login_path %>"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/LetterL.svg/1200px-LetterL.svg.png" alt="" width="33" height="33" class="img"></a>
     <% end %>
   <% end %>
 </div>

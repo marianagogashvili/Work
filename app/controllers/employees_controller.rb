@@ -29,6 +29,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
+    
     @ed = @employee.education.tr('[""]', '').split(",").to_a
     print(@ed)
     if (@ed == ["---\n"])
@@ -46,7 +47,8 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee.destroy
-    redirect_to employees_path
+    session[:employee_id] = nil
+    redirect_to login_path
   end
 
   private

@@ -1,5 +1,9 @@
 
 <style>
+body {
+    font-family: 'Roboto', sans-serif;
+
+}
   .container {
     /*float: center;*/
     background-color:  #fafafa;
@@ -8,7 +12,6 @@
   }
   .field {
     text-align: center;
-    font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size: 25px;
     margin-top: 20px;
@@ -17,9 +20,19 @@
     clear: both;
   }
 
+  #dhac {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 150;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*float: left;*/
+    clear: both;
+  }
+
   #title {
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
     font-weight: 300;
     width: 300px;
     height: 40px;
@@ -39,6 +52,13 @@
     background-image: none;
     border: 0px #fff solid ;
     border-radius: 2px ;
+  } 
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+  a:hover {
+    text-decoration: none;
   }
 </style>
 <%= render "layouts/header" %>
@@ -60,7 +80,7 @@
 
   <div class="field" >
     <%= f.submit "Log in", id: "save" %>
-    </div>
-
+  </div>
 <% end %>
+<p id="dhac">Don't have an account yet? Register as <%= link_to 'employee', register_path %> or <%= link_to 'employer', new_employer_path %></p>
 </div>

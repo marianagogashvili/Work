@@ -1,7 +1,12 @@
+<%= render "layouts/header" %>
+
 <div class="container">
 
 <h1 class="field">Edit</h1>
-<%= render "layouts/header" %>
 
 <%= render 'form' %> 
+
+<div>
+    <p>Do you want to delete your account? <%= link_to 'Delete', employer_path(@employer.id), method: :delete, id: "del" %></p>
+  </div>
 </div>

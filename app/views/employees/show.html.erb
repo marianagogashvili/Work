@@ -57,6 +57,11 @@
   a {
     text-decoration: none;
   }
+  #img {
+    padding-bottom: 20px;
+    padding-right: 20px;
+
+  }
 
   @media screen and (max-width: 1015px) {
     .container {
@@ -64,15 +69,21 @@
     }
 
   }
+  @media screen and (max-width: 515px) {
+  #prof2 {
+    margin-top: 0px;
+  }
+
+}
 </style>
 <%= render "layouts/header" %>
 
 <div class="container">
   <div class="profile">
-  <% if (@employee.photo != '') %>
-    <img src="<%= @employee.photo %>" width="200" height="200" alt="">
+  <% if (@employee.photo != nil && @employee.photo != '') %>
+    <img src="<%= @employee.photo %>" width="200" height="200" alt="" id="img">
   <% else %>
-    <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" width="200" height="200" alt="">
+    <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" width="200" height="200" alt="" id="img">
   <% end %>
     
     <p><%= @employee.full_name %></p>
@@ -81,7 +92,7 @@
     <p><%= @employee.full_name %></p>
   </div>
 
-  <div class="profile" >
+  <div class="profile" id="prof2">
     <h1>Your Work Profile</h1>
     <p><%= @employee.full_name %></p>
     <% if (session[:employee_id] == @employee.id) %>

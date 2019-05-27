@@ -44,7 +44,8 @@ class EmployersController < ApplicationController
 
   def destroy
     @employer.destroy
-    redirect_to employers_path
+    session[:employer_id] = nil
+    redirect_to login_path
   end
 
   private

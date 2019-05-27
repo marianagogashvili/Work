@@ -9,7 +9,7 @@
     font-family: 'Roboto', sans-serif;
   }
   
-  #btn, #btn2 {
+  #btn, #btn2, #btn4 {
     color: #ffffff ;
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
@@ -29,6 +29,17 @@
   #btn2 {
     color: #2196F3 ;
     border: 2px #fafafa solid;
+  }
+
+  #btn4 {
+    margin-left: 33%;
+    text-decoration: none;
+    overflow: hidden;
+  }
+  .btn4 {
+    padding: 10px;
+    background-color: #2196F3 ;
+    border-radius: 3px;
   }
 
   .btn {
@@ -147,16 +158,18 @@
     }
   }
 </style>
-<% if @jobs != nil %>
+
+<% if @js != nil %>
 <div class="container">
   <div id="cont">
-    <% if @jobs.ids != [] %>
-        <% @jobs.each do |t| %>
+    <% if @js != [] %>
+        <% @js.each do |t| %>
         
             <div id="cont2">
               <p id="name"><%= link_to t.title, request.params.merge(job_id: t.id) %></p>
               <p id="name2"> <%= time_ago_in_words(t.created_at) %> ago </p>
               <p id="name1"><%= link_to t.employer.full_name, employer_path(t.employer.id) %></p>  
+              
             </div>
           <hr>
         <% end %>
@@ -164,17 +177,27 @@
     <% else %>
       <p style="margin-left: 10px;">No jobs found :(</p>
     <% end %>
+    <% if @end == false %>
+      <p class="btn4"><%= link_to 'Load more', request.params.merge(page: params[:page].to_i+1), id: "btn4" %></p>
+      <% if params[:page].to_i != 1 %>
+         <p class="btn4"><%= link_to 'Go back', request.params.merge(page: params[:page].to_i-1), id: "btn4" %></p>
+      <% end %>
+    <% else %>
+      <% if params[:page].to_i != 1 %>
+         <p class="btn4"><%= link_to 'Go back', request.params.merge(page: params[:page].to_i-1), id: "btn4" %></p>
+      <% end %>
+    <% end %>
   </div>
 <% if @jobs.ids != [] %>
   <div id="cont3">
     <div class="contain">
-       <% if (@job.photo != '') %>
+       <% if (@job.photo != '' && @job.photo != nil) %>
         <div class="image" style="float: left;">
           <img src="<%= @job.photo %>" width="180" height="100" alt="">
         </div>
       <% else %>
        <div class="image" style="float: left;">
-          <img src="https://securemedia.newjobs.com/clu/xjp4/xjp4839dex/companylogo.gif" width="180" height="100" alt="">
+          <img src="https://www.solidbackgrounds.com/images/2560x1440/2560x1440-davys-grey-solid-color-background.jpg" width="180" height="100" alt="">
         </div>
       <% end %>
       
@@ -192,9 +215,9 @@
         <% if logged_in? && session[:employee_id] != nil %>
           <!-- if check? == false -->
           <% if JobEmployee.find_by(job_id: params[:job_id], employee_id: session[:employee_id]) == nil && @job.vacant == true %>
-            <%= button_to "apply", apply_path(params[:job_id]), id: "btn" %>
+            <%= button_to "apply", apply_path(@job.id), id: "btn" %>
           <% else %>
-            <%= button_to "delete application", delete_apply_path(params[:job_id], session[:employee_id]), method: :delete, id: "btn" %>
+            <%= button_to "delete application", delete_apply_path(@job.id, session[:employee_id]), method: :delete, id: "btn" %>
           <% end %>
         <% end %>
         </div>
@@ -202,9 +225,9 @@
         <div class="btn">
         <% if logged_in? && session[:employee_id] != nil %>
           <% if !Saved.find_by(job_id: params[:job_id], employee_id: session[:employee_id]) %>
-            <%= button_to "save", save_path(params[:job_id]), id: "btn2" %>
+            <%= button_to "save", save_path(@job.id), id: "btn2" %>
           <% else %>
-            <%= button_to "delete save", del_save_path(params[:job_id]), method: :delete, id: "btn2" %>
+            <%= button_to "delete save", del_save_path(@job.id), method: :delete, id: "btn2" %>
           <% end %> 
         <% end %> 
         </div>
@@ -225,3 +248,4 @@
 <p style="margin-top: 100px;"> no jobs found</p>
 
 <% end %>
+

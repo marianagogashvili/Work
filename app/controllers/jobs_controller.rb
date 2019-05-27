@@ -59,7 +59,7 @@ class JobsController < ApplicationController
   end
   def destroy
     @job.destroy
-    redirect_to jobs_path
+    redirect_to employer_path(current_employer)
   end
 
   private

@@ -108,6 +108,11 @@ a:hover {
 a {
   color: inherit;
 } 
+#img {
+    padding-bottom: 20px;
+    padding-right: 20px;
+
+  }
 @media screen and (max-width: 1015px) {
   .container {
     margin-top: 90px;
@@ -133,10 +138,10 @@ a {
 <div class="container">
 
   <div class="profile">
-    <% if (@employer.photo != '') %>
-    <img src="<%= @employer.photo %>" width="200" height="200" alt="">
+    <% if (@employer.photo != nil) %>
+      <img src="<%= @employer.photo %>" width="200" height="200" alt="" id="img">
     <% else %>
-    <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="">
+      <img src="https://securemedia.newjobs.com/ntwk/user-icon-200x200.jpg" alt="" id="img">
     <% end %>
     <p><%= @employer.full_name %></p>
     <p><%= @employer.email %></p>
